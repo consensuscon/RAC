@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+    #  healthlink-api:
+    #build: .
+    #volumes:
+    #  - .:/src
+    #ports:
+    #  - "9090:9090"
+        #extra_hosts:
+        #- localhost:172.17.0.1
+
+  factom-sandbox:
+    build:
+      context: ./factom-docker
+      dockerfile: Dockerfile
+    command: ["/bin/bash", "-c", "/usr/bin/supervisord"]
+    ports:
+      - "8088:8088"
+      - "8089:8089"
+      - "8090:8090"
+    volumes:
+      - factomdata:/root/.factom/
+        #extra_hosts:
+        #- localhost:172.17.0.1
+
+
+volumes:
+  factomdata:
